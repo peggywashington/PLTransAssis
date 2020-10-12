@@ -14,6 +14,7 @@ driver.get("https://www.xiami.com/")
 time.sleep(20)
 
 with open('xiami_cookies.txt','w') as xmck:
+	# todo：自动判断是否成功
     xmck.write(json.dumps(driver.get_cookies()))
 
 
