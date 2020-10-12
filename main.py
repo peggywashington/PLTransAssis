@@ -41,7 +41,7 @@ driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
 driver.get("https://emumo.xiami.com/space/import/u/<替换userid>")
 
 # ----------这里放歌单链接，例：pl_links = ["https://music.163.com/#/playlist?id=310692271","https://music.163.com/#/playlist?id=2714529484","https://music.163.com/#/playlist?id=117586346"]
-pl_links = ["https://music.163.com/#/playlist?id=310692271","https://music.163.com/#/playlist?id=151354"]
+pl_links = []
 
 # 判断源
 source = 0
@@ -98,25 +98,25 @@ for pl_link in pl_links:
 		if(fail_info.find("导入失败")!=-1):
 			log = "歌单： "+pl_link+" 导入失败，很可能因为虾米的曲库中没有歌单中任何一首歌。"
 			print("Warning - "+log)
-			with open('fail_log.txt','a') as fl:
+			with open('fail_log.txt','a',encoding='utf-8') as fl:
 				fl.write('\n')
 				fl.write(log)
 		elif(fail_info.find("正在帮你")!=-1):
 			log = "歌单： "+pl_link+" 很可能原本就为空。"
 			print("Warning - "+log)
-			with open('fail_log.txt','a') as fl:
+			with open('fail_log.txt','a',encoding='utf-8') as fl:
 				fl.write('\n')
 				fl.write(log)
 		elif(fail_info.find("系统错误")!=-1):
 			log = "从歌单： "+pl_link+" 开始未成功，请删除pl_links中已成功的歌单链接并重新运行main.py。"
 			print("Warning - "+log)
-			with open('fail_log.txt','a') as fl:
+			with open('fail_log.txt','a',encoding='utf-8') as fl:
 				fl.write('\n')
 				fl.write(log)
 		elif(fail_info.find("操作频繁")!=-1):
 			log = "从歌单： "+pl_link+" 开始未成功，近期歌单导入次数已达上限，明天再试叭（实测几个小时是不够的）。"
 			print("Warning - "+log)
-			with open('fail_log.txt','a') as fl:
+			with open('fail_log.txt','a',encoding='utf-8') as fl:
 				fl.write('\n')
 				fl.write(log)
 	except TimeoutException:
@@ -139,6 +139,7 @@ for pl_link in pl_links:
 				except TimeoutException:
 					log = "从歌单： "+pl_link+" 开始未成功，该歌单名称含有特殊字符，请删除已导入歌单链接后重新运行main.py，提示“创建失败”后在60s内删除特殊字符并手动点击“导入歌单”。"
 					print("Warning - "+log)
-					with open('fail_log.txt','a') as fl:
+					with open('fail_log.txt','a',encoding='utf-8') as fl:
 						fl.write('\n')
 						fl.write(log)
+# %%
