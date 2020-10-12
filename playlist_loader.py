@@ -4,8 +4,9 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 
 def from_netease(driver: WebDriver, playlist_entry: str=None) -> list:
 	"""
-
-	:param driver:
+	从网易云主页获取个人歌单
+	driver main window调用前后应保持相同
+	:param driver: 要求有已登录网易云的cookie
 	:param playlist_entry: 个人歌单主页，未给则从首页点击进入
 	:return:
 	"""
