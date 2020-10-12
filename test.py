@@ -7,7 +7,7 @@ import json
 desired_capabilities = DesiredCapabilities.CHROME
 # 仅对html的内容进行下载解析,不等待整个界面加载完成（如JS文件，图片等，不包括ajax）
 desired_capabilities["pageLoadStrategy"] = "eager"
-driver = webdriver.Chrome("C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe")
+driver = webdriver.Chrome()
 driver.get("https://www.xiami.com/")
 
 # 睡眠时间 手动登录
@@ -30,7 +30,7 @@ import json
 # # 仅对html的内容进行下载解析,不等待整个界面加载完成（如JS文件，图片等，不包括ajax）
 # desired_capabilities["pageLoadStrategy"] = "eager"
 options = webdriver.ChromeOptions()
-driver = webdriver.Chrome("C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe")
+driver = webdriver.Chrome()
 driver.get("https://www.xiami.com/")
 
 # 自动登录
@@ -73,11 +73,13 @@ driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
 driver.get("https://emumo.xiami.com/space/import/u/445322139")
 
 # pl_links = ["https://music.163.com/playlist?id=721552788","https://music.163.com/playlist?id=97289683","https://music.163.com/playlist?id=362059808","https://music.163.com/playlist?id=728889315","https://music.163.com/playlist?id=485406552","https://music.163.com/playlist?id=91545874","https://music.163.com/playlist?id=733122887","https://music.163.com/playlist?id=149984759","https://music.163.com/playlist?id=66369560","https://music.163.com/playlist?id=504347934","https://music.163.com/playlist?id=892310633","https://music.163.com/playlist?id=446662147","https://music.163.com/playlist?id=317670234","https://music.163.com/playlist?id=381714674","https://music.163.com/playlist?id=898072985","https://music.163.com/playlist?id=86215731","https://music.163.com/playlist?id=15046759","https://music.163.com/playlist?id=961091458","https://music.163.com/playlist?id=51555949","https://music.163.com/playlist?id=25695362","https://music.163.com/playlist?id=155900119","https://music.163.com/playlist?id=16654576","https://music.163.com/playlist?id=409419348","https://music.163.com/playlist?id=94820063","https://music.163.com/playlist?id=91202366","https://music.163.com/playlist?id=517078488","https://music.163.com/playlist?id=363939653","https://music.163.com/playlist?id=368819170","https://music.163.com/playlist?id=709435407","https://music.163.com/playlist?id=371960051","https://music.163.com/playlist?id=879546259","https://music.163.com/playlist?id=959551760","https://music.163.com/playlist?id=109233835","https://music.163.com/playlist?id=90662917","https://music.163.com/playlist?id=81078037","https://music.163.com/playlist?id=2039073542","https://music.163.com/playlist?id=68942220","https://music.163.com/playlist?id=395678641","https://music.163.com/playlist?id=865708457","https://music.163.com/playlist?id=2040279275","https://music.163.com/playlist?id=2004326663","https://music.163.com/playlist?id=2096594353","https://music.163.com/playlist?id=156934569","https://music.163.com/playlist?id=32574245","https://music.163.com/playlist?id=627153744","https://music.163.com/playlist?id=608659376","https://music.163.com/playlist?id=1983404863","https://music.163.com/playlist?id=424363280","https://music.163.com/playlist?id=403271795","https://music.163.com/playlist?id=2156539320","https://music.163.com/playlist?id=784135469","https://music.163.com/playlist?id=698794948","https://music.163.com/playlist?id=2502287927","https://music.163.com/playlist?id=639748708","https://music.163.com/playlist?id=2082494553","https://music.163.com/playlist?id=2053195842","https://music.163.com/playlist?id=564638266","https://music.163.com/playlist?id=578452156","https://music.163.com/playlist?id=2649139759","https://music.163.com/playlist?id=2767320996","https://music.163.com/playlist?id=2301805180","https://music.163.com/playlist?id=2705328630","https://music.163.com/playlist?id=2842949865","https://music.163.com/playlist?id=2714529484","https://music.163.com/playlist?id=742670360","https://music.163.com/playlist?id=742464987","https://music.163.com/playlist?id=730404067","https://music.163.com/playlist?id=571370230","https://music.163.com/playlist?id=588396391","https://music.163.com/playlist?id=534069161","https://music.163.com/playlist?id=457324180","https://music.163.com/playlist?id=444769692","https://music.163.com/playlist?id=552845994","https://music.163.com/playlist?id=569763103","https://music.163.com/playlist?id=444747783","https://music.163.com/playlist?id=444781984","https://music.163.com/playlist?id=444804122","https://music.163.com/playlist?id=429239543","https://music.163.com/playlist?id=364784997","https://music.163.com/playlist?id=725746795","https://music.163.com/playlist?id=173642679","https://music.163.com/playlist?id=704584657","https://music.163.com/playlist?id=706241523","https://music.163.com/playlist?id=707112258","https://music.163.com/playlist?id=707546993","https://music.163.com/playlist?id=709577245","https://music.163.com/playlist?id=2664184763","https://music.163.com/playlist?id=2301557416","https://music.163.com/playlist?id=2600506003","https://music.163.com/playlist?id=2305449854","https://music.163.com/playlist?id=2755737993","https://music.163.com/playlist?id=2013636881","https://music.163.com/playlist?id=444773150","https://music.163.com/playlist?id=2382122096","https://music.163.com/playlist?id=2734432453","https://music.163.com/playlist?id=2224949018","https://music.163.com/playlist?id=2479737685","https://music.163.com/playlist?id=2184766344","https://music.163.com/playlist?id=2217122565","https://music.163.com/playlist?id=2144517233","https://music.163.com/playlist?id=3091184317","https://music.163.com/playlist?id=3122151115","https://music.163.com/playlist?id=416091600","https://music.163.com/playlist?id=444761673","https://music.163.com/playlist?id=444750174","https://music.163.com/playlist?id=444751795","https://music.163.com/playlist?id=316735633","https://music.163.com/playlist?id=3107077430","https://music.163.com/playlist?id=3159082853","https://music.163.com/playlist?id=93666003"]
-pl_links = ["https://music.163.com/#/playlist?id=310692271","https://music.163.com/#/playlist?id=427456152","https://music.163.com/#/playlist?id=310692271"]
-# https://music.163.com/#/playlist?id=151354 昆曲那个 曲库没有
-# https://music.163.com/#/playlist?id=5283975496 空歌单
-# https://music.163.com/#/playlist?id=427456152 特殊字符
-# https://music.163.com/#/playlist?id=310692271 正常
+pl_links = ["https://music.163.com/#/playlist?id=3122151115","https://music.163.com/#/playlist?id=427456152","https://music.163.com/#/playlist?id=427456152","https://music.163.com/#/playlist?id=3122151115"]
+# www.com 源错误 测试通过
+# https://music.163.com/#/playlist?id=151354 曲库没有任何一首 测试通过
+# https://music.163.com/#/playlist?id=5283975496 空歌单 测试通过
+# https://music.163.com/#/playlist?id=427456152 特殊字符 测试通过
+# https://music.163.com/#/playlist?id=310692271 正常（大歌单
+# https://music.163.com/#/playlist?id=3122151115 正常（小歌单
 # 判断源
 source = 0
 if("music.163" in pl_links[0]):
@@ -90,7 +92,8 @@ elif("kuwo" in pl_links[0]):
 	source = 4
 else:
 	driver.execute_script("alert('并非网易云/qq/酷狗/酷我的歌单链接，请检查、更换链接并重新运行main.py');")
-	print("并非网易云/qq/酷狗/酷我的链接，请检查、更换链接并重新运行main.py")
+	print("Error - 并非网易云/qq/酷狗/酷我的链接，请检查、更换链接并重新运行main.py")
+
 curr_time = datetime.datetime.now()
 with open('fail_log.txt','a') as fl:
     fl.write('\n')
@@ -129,56 +132,56 @@ for pl_link in pl_links:
 		# loading消失之后立马检测
 		WebDriverWait(driver, 1, 0.5).until(EC.visibility_of_any_elements_located((By.CSS_SELECTOR, "#toast")))
 		fail_info = driver.find_element_by_id("toast-info").text
-		print(fail_info)
+		print("System msg - "+fail_info)
 		if(fail_info.find("导入失败")!=-1):
 			log = "歌单： "+pl_link+" 导入失败，很可能因为虾米的曲库中没有歌单中任何一首歌。"
-			print(log)
+			print("Warning - "+log)
 			with open('fail_log.txt','a') as fl:
 				fl.write('\n')
 				fl.write(log)
 		elif(fail_info.find("正在帮你")!=-1):
 			log = "歌单： "+pl_link+" 很可能原本就为空。"
-			print(log)
+			print("Warning - "+log)
 			with open('fail_log.txt','a') as fl:
 				fl.write('\n')
 				fl.write(log)
 		elif(fail_info.find("系统错误")!=-1):
 			log = "从歌单： "+pl_link+" 开始未成功，请删除pl_links中已成功的歌单链接并重新运行main.py。"
-			print(log)
+			print("Warning - "+log)
 			with open('fail_log.txt','a') as fl:
 				fl.write('\n')
 				fl.write(log)
 		elif(fail_info.find("操作频繁")!=-1):
 			log = "从歌单： "+pl_link+" 开始未成功，近期歌单导入次数已达上限，明天再试叭（实测几个小时是不够的）。"
-			print(log)
+			print("Warning - "+log)
 			with open('fail_log.txt','a') as fl:
 				fl.write('\n')
 				fl.write(log)
 	except TimeoutException:
-		print(1)
 		WebDriverWait(driver, 5, 0.5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#post-data')))
 		driver.find_element_by_id("btnPostData").click()
-		print(2)
-		# fixme：???为啥如果是创建失败就没等到啊
-		WebDriverWait(driver, 60, 0.5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'div[id^="toas"]')))
-		print(2.5)
+		# 等loading消失
+		WebDriverWait(driver, 60, 0.5).until_not(EC.visibility_of_element_located((By.CSS_SELECTOR, '#loading')))
+		# WebDriverWait(driver, 60, 0.5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'div[id^="toast"]')))
 		success = driver.find_element_by_id("toastSuccess").get_attribute("style")
 		success_start = success.find("display")
-		print(3)
-		if(success[success_start:success_start+14].find("block")!=-1):
-			print(4)
+		if(success_start!=-1 and success[success_start:success_start+14].find("block")!=-1):
 			driver.find_element_by_id("toast-success-info-close").click()
 		else:
-			print(5)
 			fail_info = driver.find_element_by_id("toast-info").text
-			print(fail_info)
+			print("System msg - "+fail_info)
 			if(fail_info.find("创建失败")!=-1):
-				print(6)
-				alert("请删除歌单名称中的特殊字符之后手动点击导入歌单按钮，直到成功，给你60秒")
-				WebDriverWait(driver, 60, 0.5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#toastSuccess")))
-				driver.find_element_by_id("toast-success-info-close").click()
+				# todo: 最好能alert。。但是很快就过去了 不知咋回事
+				print("Advice - 请删除歌单名称中的特殊字符之后手动点击导入歌单按钮，直到成功，给你60秒")
+				try:
+					WebDriverWait(driver, 60, 0.5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#toastSuccess")))
+					driver.find_element_by_id("toast-success-info-close").click()
+				except TimeoutException:
+					log = "从歌单： "+pl_link+" 开始未成功，该歌单名称含有特殊字符，请删除已导入歌单链接后重新运行main.py，提示“创建失败”后在60s内删除特殊字符并手动点击“导入歌单”。"
+					print("Warning - "+log)
+					with open('fail_log.txt','a') as fl:
+						fl.write('\n')
+						fl.write(log)
 	
- # %%
 
-
-#%%
+# %%
