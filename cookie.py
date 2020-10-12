@@ -9,7 +9,8 @@ driver = webdriver.Chrome()
 driver.get("https://www.xiami.com/")
 
 # 睡眠时间手动登录
-time.sleep(20)
+time.sleep(40)
 
-with open('xiamiCookies.txt','w') as xmck:
+with open('xiami_cookies.txt','w') as xmck:
     xmck.write(json.dumps(driver.get_cookies()))
+# %%
