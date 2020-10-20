@@ -121,30 +121,19 @@ class Transfer:
 				WebDriverWait(driver, 1, 0.5).until(EC.visibility_of_any_elements_located((By.CSS_SELECTOR, "#toast")))
 				fail_info = driver.find_element_by_id("toast-info").text
 				print("System msg - " + fail_info)
+				log = ""
 				if fail_info.find("导入失败") != -1:
 					log = "歌单： " + url_src_playlist + " 导入失败，很可能因为虾米的曲库中没有歌单中任何一首歌。"
-					print("Warning - " + log)
-					with open('fail_log.txt', 'a', encoding='utf-8') as fl:
-						fl.write('\n')
-						fl.write(log)
 				elif fail_info.find("正在帮你") != -1:
 					log = "歌单： " + url_src_playlist + " 很可能原本就为空。"
-					print("Warning - " + log)
-					with open('fail_log.txt', 'a', encoding='utf-8') as fl:
-						fl.write('\n')
-						fl.write(log)
 				elif fail_info.find("系统错误") != -1:
 					log = "从歌单： " + url_src_playlist + " 开始未成功，请删除pl_links中已成功的歌单链接并重新运行main.py。"
-					print("Warning - " + log)
-					with open('fail_log.txt', 'a', encoding='utf-8') as fl:
-						fl.write('\n')
-						fl.write(log)
 				elif fail_info.find("操作频繁") != -1:
 					log = "从歌单： " + url_src_playlist + " 开始未成功，近期歌单导入次数已达上限，明天再试叭（实测几个小时是不够的）。"
-					print("Warning - " + log)
-					with open('fail_log.txt', 'a', encoding='utf-8') as fl:
-						fl.write('\n')
-						fl.write(log)
+				print("Warning - " + log)
+				with open('fail_log.txt', 'a', encoding='utf-8') as fl:
+					fl.write('\n')
+					fl.write(log)
 				WebDriverWait(driver, 60, 0.5).until_not(
 					EC.visibility_of_element_located((By.CSS_SELECTOR, '#toast')))
 			except TimeoutException:

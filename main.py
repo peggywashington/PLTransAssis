@@ -44,15 +44,15 @@ driver.get("https://emumo.xiami.com/space/import/u/<替换userid>")
 pl_links = []
 
 # 判断源
-source = 0
+source = ""
 if("music.163" in pl_links[0]):
-	source = 1
+	source = "Wangyi"
 elif("y.qq" in pl_links[0]):
-	source = 2
+	source = "QQ"
 elif("kugou" in pl_links[0]):
-	source = 3
+	source = "KuGou"
 elif("kuwo" in pl_links[0]):
-	source = 4
+	source = "KuWo"
 else:
 	driver.execute_script("alert('并非网易云/qq/酷狗/酷我的歌单链接，请检查、更换链接并重新运行main.py');")
 	print("Error - 并非网易云/qq/酷狗/酷我的链接，请检查、更换链接并重新运行main.py")
@@ -62,28 +62,15 @@ with open('fail_log.txt','a') as fl:
     fl.write('\n')
     fl.write('----------'+datetime.datetime.strftime(curr_time,'%Y-%m-%d %H:%M:%S')+'----------')
 for pl_link in pl_links:
-	if source == 0:
+	if source == "":
 		break
-	elif source == 1:
-		WebDriverWait(driver, 60, 0.5).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#txtWangyi")))
-		driver.find_element_by_id("txtWangyi").clear()
-		driver.find_element_by_id("txtWangyi").send_keys(pl_link)
-	elif source == 2:
-		driver.find_element_by_id("tabNavQQ").click()
-		WebDriverWait(driver, 60, 0.5).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#txtQQ")))
-		driver.find_element_by_id("txtQQ").clear()
-		driver.find_element_by_id("txtQQ").send_keys(pl_link)
-	elif source == 3:
-		driver.find_element_by_id("tabNavKuGou").click()
-		WebDriverWait(driver, 60, 0.5).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#txtKuGou")))
-		driver.find_element_by_id("txtKuGou").clear()
-		driver.find_element_by_id("txtKuGou").send_keys(pl_link)
-	elif source == 4:
-		driver.find_element_by_id("tabNavKuWo").click()
-		WebDriverWait(driver, 60, 0.5).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#txtKuWo")))
-		driver.find_element_by_id("txtKuWo").clear()
-		driver.find_element_by_id("txtKuWo").send_keys(pl_link)
-    # todo:拖滑块
+	else:
+		if source != "Wangyi":
+			driver.find_element_by_id("tabNav"+source).click()
+		WebDriverWait(driver, 60, 0.5).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#txt"+source)))
+		driver.find_element_by_id("txt"+source).clear()
+		driver.find_element_by_id("txt"+source).send_keys(pl_link)
+    # todo:手动拖滑块
 	WebDriverWait(driver, 600, 0.5).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#nc_1__scale_text > span > b')))
 	WebDriverWait(driver, 600, 0.5).until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, '#nc_1__scale_text > span > b'),'验证通过'))
 	# print(driver.find_element_by_css_selector("#nc_1__scale_text > span > b").text)
@@ -95,30 +82,19 @@ for pl_link in pl_links:
 		WebDriverWait(driver, 1, 0.5).until(EC.visibility_of_any_elements_located((By.CSS_SELECTOR, "#toast")))
 		fail_info = driver.find_element_by_id("toast-info").text
 		print("System msg - "+fail_info)
+		log = ""
 		if(fail_info.find("导入失败")!=-1):
 			log = "歌单： "+pl_link+" 导入失败，很可能因为虾米的曲库中没有歌单中任何一首歌。"
-			print("Warning - "+log)
-			with open('fail_log.txt','a',encoding='utf-8') as fl:
-				fl.write('\n')
-				fl.write(log)
 		elif(fail_info.find("正在帮你")!=-1):
 			log = "歌单： "+pl_link+" 很可能原本就为空。"
-			print("Warning - "+log)
-			with open('fail_log.txt','a',encoding='utf-8') as fl:
-				fl.write('\n')
-				fl.write(log)
 		elif(fail_info.find("系统错误")!=-1):
 			log = "从歌单： "+pl_link+" 开始未成功，请删除pl_links中已成功的歌单链接并重新运行main.py。"
-			print("Warning - "+log)
-			with open('fail_log.txt','a',encoding='utf-8') as fl:
-				fl.write('\n')
-				fl.write(log)
 		elif(fail_info.find("操作频繁")!=-1):
 			log = "从歌单： "+pl_link+" 开始未成功，近期歌单导入次数已达上限，明天再试叭（实测几个小时是不够的）。"
-			print("Warning - "+log)
-			with open('fail_log.txt','a',encoding='utf-8') as fl:
-				fl.write('\n')
-				fl.write(log)
+		print("Warning - "+log)
+		with open('fail_log.txt','a',encoding='utf-8') as fl:
+			fl.write('\n')
+			fl.write(log)
 	except TimeoutException:
 		WebDriverWait(driver, 5, 0.5).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#post-data')))
 		driver.find_element_by_id("btnPostData").click()
