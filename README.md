@@ -16,14 +16,17 @@
 **如果遇到了奇怪的问题：**  
 　　~~都是因为我懒得写代码处理~~ 已知的错误都已处理
 
-**使用说明：**　　
-1. 我的环境：python3/chrome+chormedriver85/selenium  
-2. 先运行 cookie.py ，给你20秒手动登录一下，扫码很快的！  
-3. 如果出现 xiami_cookies.txt，并且能在里面搜到你的虾米userid表示成功。搜不到说明你超过20s了，重新做步骤2等待运行完毕  
-4. main.py 中  
-    1. 替换上自己的虾米id driver.get("*https://emumo.xiami.com/space/import/u/<替换userid>*")  
-    2. pl_links中放自己的网易云歌单的链接，支持在网易云创建的歌单和收藏的歌单，但注意导入之后都变成你在虾米创建的歌单，ps：pl_links中的第一个链接导入之后会在最后一个，最后一个会在第一个  
-    3. 滑块自己拖吧，因为我懒得写,之后可能会写
+**环境准备：**　　
+1. 软件环境：python3/chrome+chormedriver85 
+2. Python包依赖：参见`requirements.txt`，需安装`selenium`和`browser_cookie3`
+
+
+**使用流程：**　　
+1. 使用Chrome浏览器登录虾米音乐账号，使浏览器保存账号登录后的cookie（重要），程序将借助cookie登录网站
+2. 手动获取源歌单的链接，在与`transfer_main.py`同级的目录下创建`playlist_urls.txt`，将歌单链接存入文件中，每行一个链接
+3. 现在仅支持自动获取网易云的歌单链接，若要玩耍此功能，同样先用Chrome浏览器登录网易云，然后把`transfer_main.py`中的`url_src_playlists = playlist_loader.from_file()`改为`url_src_playlists = playlist_loader.from_netease(driver)`
+4. 运行`transfer_main.py`
+5. 别问为什么这么繁琐，懒得写命令行接口
 
 ----------------------------------------------
 
